@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.GradientDrawable;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -77,11 +78,22 @@ public class ControlButton extends TextView implements ControlInterface {
             mRectPaint.setColor(value.data);
             mRectPaint.setAlpha(128);
         } else {
-            mRectPaint.setColor(Color.WHITE);
-            mRectPaint.setAlpha(60);
+            mRectPaint.setColor(Color.rgb(55, 145, 55));
+            mRectPaint.setAlpha(150);
         }
 
         setText(properties.name);
+    }
+
+    /** Minecraft Bedrock-inspired translucent touch button styling. */
+    @Override
+    public void setBackground() {
+        GradientDrawable background = new GradientDrawable();
+        background.setShape(GradientDrawable.RECTANGLE);
+        background.setColor(Color.argb(105, 38, 42, 38));
+        background.setStroke((int) Math.max(1, Tools.dpToPx(2)), Color.argb(190, 235, 245, 235));
+        background.setCornerRadius(mComputedRadius);
+        super.setBackground(background);
     }
 
     @Override
